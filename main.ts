@@ -1,10 +1,13 @@
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.y += -20
-    pause(400)
+    pause(450)
     mySprite.y += 20
 })
+info.onScore(10, function () {
+    game.gameOver(true)
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    info.setScore(0)
+    info.setScore(-1)
 })
 let enemysped = 0
 let mySprite: Sprite = null
