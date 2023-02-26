@@ -3,8 +3,12 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     pause(400)
     mySprite.y += 20
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    info.setScore(0)
+})
 let enemysped = 0
 let mySprite: Sprite = null
+info.setScore(0)
 mySprite = sprites.create(img`
     . . 4 4 4 . . . . 4 4 4 . . . . 
     . 4 5 5 5 e . . e 5 5 5 4 . . . 
@@ -163,8 +167,9 @@ let mySprite2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Enemy)
 forever(function () {
-    enemysped = randint(25, 80)
+    enemysped = randint(20, 70)
     mySprite2.setPosition(156, 80)
+    info.changeScoreBy(1)
     while (mySprite2.x > 1) {
         mySprite2.x += -5
         pause(enemysped)
